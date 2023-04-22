@@ -1,48 +1,27 @@
-import React from 'react';
-import colors from "../colors";
-// import logo from './minnmax-logo.png';
+import React, { useState } from 'react';
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
-    <div className='header' style={headerStyle}>
-      {/* <img src={logo} alt="MinnMax logo" style={logoStyle} /> */}
-      <h1 style={titleStyle}>MinnMax</h1>
-      <div style={linksStyle}>
-        <a href="#" style={linkStyle}>Videos</a>
-        <a href="#" style={linkStyle}>Support</a>
-        <a href="#" style={linkStyle}>Podcasts</a>
-        <a href="#" style={linkStyle}>Schedule</a>
-        <a href="#" style={linkStyle}>Other</a>
-      </div>
+    <div className='header'>
+      <h1 className="title">MinnMax</h1>
+      <button className="menu-toggle" onClick={toggleMenu}>{menuOpen ? 'Close' : 'Menu'}</button>
+      {menuOpen && (
+        <div className="dropdown">
+          <a href="#" className="link">Videos</a>
+          <a href="#" className="link">Support</a>
+          <a href="#" className="link">Podcasts</a>
+          <a href="#" className="link">Schedule</a>
+          <a href="#" className="link">Other</a>
+        </div>
+      )}
     </div>
   );
-}
-
-const headerStyle = {
-  backgroundColor: colors.minnMaxOrange,
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: '1rem',
-  color: 'black',
-};
-
-// const logoStyle = {
-//   height: '60px',
-// };
-
-const titleStyle = {
-  margin: '0',
-};
-
-const linksStyle = {
-  display: 'flex',
-};
-
-const linkStyle = {
-  color: 'black',
-  textDecoration: 'none',
-  margin: '0 1rem',
 };
 
 export default Header;
